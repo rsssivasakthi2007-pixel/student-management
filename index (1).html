@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+        }
+
+        form {
+            width: 400px;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #message {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="registrationForm">
+    <h2>Workshop Registration</h2>
+
+    <input type="text" id="name" placeholder="Participant Name">
+
+    <input type="email" id="email" placeholder="Email">
+
+    <input type="text" id="phone" placeholder="Phone Number">
+
+    <select id="event">
+        <option value="">Select Event</option>
+        <option value="Web Development">Web Development</option>
+        <option value="AI Workshop">AI Workshop</option>
+        <option value="Cloud Workshop">Cloud Workshop</option>
+    </select>
+
+    <button type="submit">Register</button>
+    <button type="reset">Reset</button>
+
+    <p id="message"></p>
+</form>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let event = document.getElementById("event").value;
+
+    if (name === "" || email === "" || phone === "" || event === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+        alert("Enter a valid 10-digit phone number");
+        return;
+    }
+
+    document.getElementById("message").innerText =
+        "Registration successful for " + name;
+});
+</script>
+
+</body>
+</html>
